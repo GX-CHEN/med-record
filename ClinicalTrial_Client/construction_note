@@ -1,0 +1,6 @@
+1 construct index.html and js
+2 make pages in the components with only simple text,
+add to index.js, route to them and test
+3 write the button links between files
+4 write methods such as submit
+5 write what this method do in the action folder
