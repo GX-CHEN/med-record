@@ -2,6 +2,7 @@
 // route the express with operations
 
 const express = require('express');
+const cors = require('cors')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const routes = require('./routes/routes');
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // equip the middleware before routes
+app.use(cors());
 app.use(bodyParser.json());
 routes(app);
 
