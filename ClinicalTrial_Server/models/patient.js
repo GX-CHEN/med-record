@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const PatientSchema = new Schema({
     bangou: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     time: {
         type: [String]

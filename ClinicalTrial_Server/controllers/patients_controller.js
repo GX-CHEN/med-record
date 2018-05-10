@@ -25,7 +25,14 @@ module.exports = {
             .then(() => Patient.findOne({ bangou: b }))
             // get resp from the previous return
             .then(resp => {
-                res.send(resp);
+                if (resp == null) {
+                    reply = JSON.stringify("ID not found!");
+                }
+                else
+                {
+                    reply = resp;
+                }
+                res.send(reply)
             })
             .catch(next);
 
