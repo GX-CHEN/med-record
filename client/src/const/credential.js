@@ -1,0 +1,6 @@
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const REGISTER = 'REGISTER';
+export const LOGIN_FULFILLED = 'LOGIN_FULFILLED';
+export const LOGOUT_FULFILLED = 'LOGOUT_FULFILLED';
+export const REGISTER_FULFILLED = 'REGISTER_FULFILLED';
