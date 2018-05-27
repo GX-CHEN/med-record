@@ -14,68 +14,17 @@ button:disabled {
   opacity: 0.5;
 }
 
-.form-wrapper {
-  position: relative;
-  height: 100%;
-}
-
-.login-form,
-.event-view-form,
-.schedule-view-form {
-  min-width: 250px;
-  max-width: 350px;
+.report-index-form {
+  max-width: 500px;
   margin: auto;
-  width: 50%;
-  height: 60%;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  padding-top: 40%;
 }
 
-.event-view-form {
-  height: 80%;
+.report-index-form button,
+.report-index-form input {
+  margin: 10px 0;
 }
 
-.login-form-forgot {
-  float: right;
-}
-
-.login-form-button {
+.ant-btn {
   width: 100%;
-}
-
-.full-height {
-  height: 100vh;
-}
-
-.rbc-btn-group {
-  display: none;
-}
-
-.ant-layout-sider-zero-width-trigger {
-  z-index: 2;
-}
-
-.ant-form-item {
-  margin-bottom: 14px;
-}
-
-.ant-input {
-  font-size: 16px;
-}
-
-.ant-menu-item-selected {
-  background-color: transparent !important;
-}
-
-.logo {
-  min-height: 40px;
-  padding: 10px;
-  color: white;
-  font-size: 24px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
 }

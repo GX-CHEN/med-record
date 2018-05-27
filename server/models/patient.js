@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PatientSchema = new Schema({
-  bangou: {
+  patient_id : {
     type: String,
     required: true,
     unique: true

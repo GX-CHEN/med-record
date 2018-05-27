@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Divider, message } from 'antd';
+import { Icon, Input, Button } from 'antd';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { addTime } from '../../action/patientData';
@@ -15,22 +15,20 @@ class ReportIndex extends Component {
 
   submitValues = () => {
     try {
-      console.log('value before add time', this.state.value)
       this.props.addTime(this.state.value);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
     this.props.changePage('/reportConfirm');
   };
 
   updateValue = event => {
-    console.log(event.target.value);
     this.setState({ value: event.target.value });
   };
 
   render() {
     return (
-      <div>
+      <div className="report-index-form" >
         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={this.updateValue} />
         <Button type="primary" onClick={this.submitValues}>
           Submit
