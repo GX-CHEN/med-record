@@ -78,7 +78,7 @@ class Login extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  unsafe_componentWillReceiveProps(nextProps) {
     const { userId } = nextProps;
     if (userId) {
       if (includes(userId, 'fail')) {
