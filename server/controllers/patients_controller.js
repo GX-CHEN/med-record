@@ -3,7 +3,7 @@ const Patient = require("../models/patient");
 module.exports = {
   // next help tell the actual error
   create(req, res, next) {
-    console.log('inside create with request boday', req.body);
+    console.log('inside create with request body', req.body);
     const patientProps = req.body;
     Patient.create(patientProps)
       .then(patient => res.send(patient))

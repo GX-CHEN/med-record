@@ -15,6 +15,7 @@ class ReportIndex extends Component {
 
   submitValues = () => {
     try {
+      console.log('value before add time', this.state.value)
       this.props.addTime(this.state.value);
     } catch (e) {
       console.log(e);
