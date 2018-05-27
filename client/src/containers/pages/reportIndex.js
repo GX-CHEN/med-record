@@ -1,13 +1,43 @@
 import React, { Component } from 'react';
+import { Form, Icon, Input, Button, Divider, message } from 'antd';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
+import { addTime } from '../../action/patientData';
 import { connect } from 'react-redux';
-import { addTime } from '../../model/apiService';
 
 class ReportIndex extends Component {
-  
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ''
+    };
+  }
 
+  submitValues = () => {
+    try {
+      this.props.addTime(this.state.value);
+    } catch (e) {
+      console.log(e);
+    }
+    this.props.changePage('/reportConfirm');
+  };
+
+  updateValue = event => {
+    console.log(event.target.value);
+    this.setState({ value: event.target.value });
+  };
+
+  render() {
+    return (
+      <div>
+        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={this.updateValue} />
+        <Button type="primary" onClick={this.submitValues}>
+          Submit
+        </Button>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -19,8 +49,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      register,
-      changePage: payload => push('/', payload)
+      addTime,
+      changePage: (route, payload) => push(route, payload)
     },
     dispatch
   );

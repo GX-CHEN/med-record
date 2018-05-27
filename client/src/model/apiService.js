@@ -27,8 +27,8 @@ export function loginService(username, password) {
   });
 }
 
-export function addTime(values) {
-  return axios.put(`http://localhost:3050/api/patiens`, values).then(function(res) {
+export function addTimeService(values) {
+  return axios.put(`http://localhost:3050/api/patients`, values).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
   });
