@@ -15,9 +15,16 @@ button:disabled {
 }
 
 .report-index-form {
-  max-width: 500px;
+  min-width: 250px;
+  max-width: 350px;
+  width: 50%;
+  height: 40%;
   margin: auto;
-  padding-top: 40%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .report-index-form button,
