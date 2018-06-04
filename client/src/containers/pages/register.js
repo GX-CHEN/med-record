@@ -87,7 +87,7 @@ class Register extends React.Component {
     message.error(content, 3);
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { userId } = nextProps;
     if (userId) {
       if (includes(userId, 'already exist')) {
