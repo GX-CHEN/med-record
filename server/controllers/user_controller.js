@@ -3,6 +3,7 @@ import User from "../models/user_schema";
 import bcrypt from "bcrypt";
 
 export const signup = async (req, res, next) => {
+  console.log("inside signup")
   const data = req.body;
 
   User.find({ username: data.username }, async function(err, docs) {
@@ -18,7 +19,7 @@ export const signup = async (req, res, next) => {
   });
 };
 
-export const login = async (req, res, next) => {
+export const login = (req, res, next) => {
   const { username, password } = req.body;
 
   User.findOne({ username: username }).exec(function(err, user) {
