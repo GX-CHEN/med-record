@@ -3,13 +3,14 @@ import { LOGIN_FULFILLED, LOGOUT_FULFILLED, REGISTER_FULFILLED } from '../const/
 const initialState = {};
 
 export default (state = initialState, action) => {
+  console.log("inside reducer")
   const { type, payload } = action;
   switch (type) {
     case LOGIN_FULFILLED: {
       return {
         ...state,
         payload,
-        nextPage: 'scheduleList'
+        nextPage: 'reportIndex'
       };
     }
     case LOGOUT_FULFILLED: {
