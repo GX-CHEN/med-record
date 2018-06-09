@@ -1,4 +1,4 @@
-import { ADD_TIME } from '../const/patientData';
+import { ADD_TIME } from '../const/patient';
 import { addTimeService } from '../model/apiService';
 
 export const addTime = (values) => {

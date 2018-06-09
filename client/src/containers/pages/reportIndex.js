@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Icon, Input, Button } from 'antd';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import { addTime } from '../../action/patientData';
+import { addTime } from '../../action/patient';
 import { connect } from 'react-redux';
 
 class ReportIndex extends Component {

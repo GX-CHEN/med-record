@@ -1,4 +1,4 @@
-import { ADD_TIME_FULFILLED } from '../const/patientData';
+import { ADD_TIME_FULFILLED } from '../const/patient';
 
 const initialState = {};
 
