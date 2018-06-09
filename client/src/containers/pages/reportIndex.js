@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Icon, Input, Button } from 'antd';
+import { Icon, Input, Button, message } from 'antd';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { addTime } from '../../action/patient';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class ReportIndex extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class ReportIndex extends Component {
     try {
       this.props.addTime(this.state.value);
     } catch (e) {
-      console.error(e);
+      message.error('something went wrong');
     }
     this.props.changePage('/reportConfirm');
   };
@@ -38,6 +39,11 @@ class ReportIndex extends Component {
   }
 }
 
+ReportIndex.propTypes = {
+  addTime: PropTypes.func,
+  changePage: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     userId: state.credential.payload,
@@ -54,4 +60,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReportIndex);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReportIndex);

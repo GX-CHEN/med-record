@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { login } from '../../action/credential';
 import { includes } from 'lodash';
 import { Form, Icon, Input, Button, Divider, message } from 'antd';
+import PropTypes from 'prop-types';
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
@@ -60,6 +61,12 @@ class NormalLoginForm extends React.Component {
   }
 }
 
+NormalLoginForm.propTypes = {
+  form: PropTypes.object,
+  changePage: PropTypes.func,
+  login: PropTypes.func
+};
+
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 class Login extends React.Component {
@@ -79,7 +86,6 @@ class Login extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps);
     const { userId } = nextProps;
     if (userId) {
       if (includes(userId, 'fail')) {
@@ -97,6 +103,12 @@ class Login extends React.Component {
   }
 }
 
+Login.propTypes = {
+  location: PropTypes.object,
+  changePage: PropTypes.func,
+  login: PropTypes.func
+};
+
 const mapStateToProps = state => {
   return {
     userId: state.credential.payload,
@@ -113,4 +125,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

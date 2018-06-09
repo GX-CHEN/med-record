@@ -2,7 +2,7 @@
   "name": "Med Time Record",
   "short_name": "服药记录",
   "theme_color": "#70acd6",
-  "background_color": "#d2d9e5",
+  "background_color": "#ffffff",
   "display": "standalone",
   "Scope": "/",
   "start_url": "/",
