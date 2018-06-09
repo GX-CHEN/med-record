@@ -1,11 +1,11 @@
 // This file loads the database and
 // route the express with operations
 
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const routes = require("./routes/routes");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import routes from "./routes/routes";
 const app = express();
 
 mongoose.Promise = global.Promise;
@@ -26,4 +26,4 @@ app.use((err, req, res, next) => {
   res.status(422).send({ error: err.message });
 });
 
-module.exports = app;
+export default app;

@@ -1,7 +1,9 @@
-import bcrypt from 'bcrypt';
-import mongoose from 'mongoose';
+import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
-// schedules will be a list of ids refer to specific schedule (notice each schedule contains nested scheduleItems)
+/**
+ * schedules will be a list of ids refer to specific schedule (notice each schedule contains nested scheduleItems)
+ */
 var UserSchema = new mongoose.Schema(
   {
     username: String,
@@ -11,8 +13,11 @@ var UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//hashing a password before saving it to the database
-UserSchema.pre('save', function(next) {
+/**
+ * hashing a password before saving it to the database
+ */
+
+UserSchema.pre("save", function(next) {
   var user = this;
   bcrypt.hash(user.password, 10, function(err, hash) {
     if (err) {
@@ -24,4 +29,4 @@ UserSchema.pre('save', function(next) {
 });
 
 export { UserSchema };
-export default mongoose.model('User', UserSchema);
+export default mongoose.model("User", UserSchema);
