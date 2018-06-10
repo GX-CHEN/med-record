@@ -5,6 +5,11 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+/**
+ * doctorDashboard contains two buttons
+ * 1. Manage Meds
+ * 2. Display user dialy reporting record
+ */
 class DoctorDashboard extends Component {
   constructor(props) {
     super(props);

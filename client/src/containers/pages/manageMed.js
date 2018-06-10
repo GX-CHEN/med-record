@@ -7,6 +7,10 @@ import { isEqual, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { List, Divider, Input, Icon, Button, message } from 'antd';
 
+/**
+ * This corresponding to the page for medicine management
+ * Page is secured by checking doctor_role in the localStorge, if not a doctor, will be directed to noPermission page
+ */
 class ManageMed extends Component {
   constructor(props) {
     super(props);

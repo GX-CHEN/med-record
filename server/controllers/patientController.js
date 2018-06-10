@@ -1,11 +1,14 @@
-import PatientModel from "../models/patientModel";
+import PatientReportModel from "../models/patientReportModel";
 
+/**
+ * This controller handles the patient reporting for their medicine intake time
+ */
 export default {
   // next help tell the actual error
   create(req, res, next) {
     console.log("inside create with request body", req.body);
     const patientProps = req.body;
-    PatientModel.create(patientProps)
+    PatientReportModel.create(patientProps)
       .then(patient => res.send(patient))
       .catch(next);
   },
@@ -17,9 +20,9 @@ export default {
     const b = patientProps.patient_id;
     const t = patientProps.time;
 
-    // patient is the stuff returned from find
-    PatientModel.findOneAndUpdate({ patient_id: b }, { $push: { time: t } })
-      .then(() => PatientModel.findOne({ patient_id: b }))
+    // patientReport is the stuff returned from find
+    PatientReportModel.findOneAndUpdate({ patient_id: b }, { $push: { time: t } })
+      .then(() => PatientReportModel.findOne({ patient_id: b }))
       // get resp from the previous return
       .then(resp => {
         if (resp == null) {

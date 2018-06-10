@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import ReportConfirm from '../pages/reportConfirm';
 import ReportTakeMed from '../pages/reportTakeMed';
 import DoctorDashboard from '../pages/doctorDashboard';
 import ViewMedHistory from '../pages/viewMedHistory';
@@ -18,7 +17,6 @@ const App = () => (
       <Route exact path="/viewMedHistory" component={ViewMedHistory} />
       <Route exact path="/manageMed" component={ManageMed} />
       <Route exact path="/reportTakeMed" component={ReportTakeMed} />
-      <Route exact path="/reportConfirm" component={ReportConfirm} />
       <Route exact path="/noPermission" component={NoPermission} />
     </main>
   </div>

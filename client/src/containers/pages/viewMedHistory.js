@@ -5,6 +5,10 @@ import { listMedHistory } from '../../action/doctor';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+/**
+ * This is a page only doctor have access to
+ * Not implemented yet, once it's implemented, doctor can see the daily records
+ */
 class ViewMedHistory extends Component {
   constructor(props) {
     super(props);

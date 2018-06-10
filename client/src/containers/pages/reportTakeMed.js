@@ -6,6 +6,12 @@ import { addTime } from '../../action/patient';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+/**
+ * The patient report will result in two possible situations:
+ * 1. When success, a in-page success message will display
+ * 2. If something goes wrong, then in-page error message will display
+ * For the confirmation of success/failure, we don't need to navigate to another page
+ */
 class ReportTakeMed extends Component {
   constructor(props) {
     super(props);
@@ -17,10 +23,10 @@ class ReportTakeMed extends Component {
   submitValues = () => {
     try {
       this.props.addTime(this.state.value);
+      message.success("Time report succeeded")
     } catch (e) {
       message.error('something went wrong');
     }
-    this.props.changePage('/reportConfirm');
   };
 
   updateValue = event => {
