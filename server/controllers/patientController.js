@@ -5,33 +5,26 @@ import PatientReportModel from "../models/patientReportModel";
  */
 export default {
   // next help tell the actual error
-  create(req, res, next) {
-    console.log("inside create with request body", req.body);
-    const patientProps = req.body;
-    PatientReportModel.create(patientProps)
-      .then(patient => res.send(patient))
-      .catch(next);
-  },
+  addTimeRecord(req, res, next) {
+    console.log("inside addTimeRecord with request body", req.body);
+    const patient_id = req.body.patient_id;
+    const date_report = req.body.date_report;
 
-  edit(req, res, next) {
-    // get the id subject from the url call
-    const patientProps = req.body;
-
-    const b = patientProps.patient_id;
-    const t = patientProps.time;
-
-    // patientReport is the stuff returned from find
-    PatientReportModel.findOneAndUpdate({ patient_id: b }, { $push: { time: t } })
-      .then(() => PatientReportModel.findOne({ patient_id: b }))
-      // get resp from the previous return
-      .then(resp => {
-        if (resp == null) {
-          reply = JSON.stringify("ID not found!");
-        } else {
-          reply = resp;
-        }
-        res.send(reply);
-      })
-      .catch(next);
+    PatientReportModel.find({ patient_id }).then(result => {
+      if (result.length === 0) {
+        PatientReportModel.create({ patient_id })
+          .then(() => {
+            PatientReportModel.update(
+              { patient_id },
+              { $push: { date_report } }
+            ).then(result => res.status(200).send(result));
+          })
+          .catch(next);
+      } else {
+        PatientReportModel.update({ patient_id }, { $push: { date_report } })
+          .then(result => res.status(200).send(result))
+          .catch(next);
+      }
+    });
   }
 };

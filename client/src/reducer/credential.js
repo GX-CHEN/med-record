@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
     case REGISTER_FULFILLED: {
       return {
         ...state,
-        userId: payload.userId,
+        userId: null,
         doctorRole: payload.doctorRole,
         errorMessage: payload.errorMessage
       };

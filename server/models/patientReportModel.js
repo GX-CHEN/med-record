@@ -7,11 +7,9 @@ const PatientSchema = new Schema({
     required: true,
     unique: true
   },
-  time: {
-    type: [String]
-    // with required = true, the array need
-    // at least 1 element. Without, send nothing
-    //and it will be empty
+  date_report: {
+    type: [String],
+    default: []
   }
 });
 

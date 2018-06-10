@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Icon, Input, Button, message } from 'antd';
+import { List, Button, Divider, message } from 'antd';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import { addTime } from '../../action/patient';
+import { listMed } from '../../action/doctor';
+import { reportTime } from '../../action/patient';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 
 /**
@@ -16,29 +19,51 @@ class ReportTakeMed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      medList: [],
+      buttonDisable: false
     };
+  }
+
+  componentDidMount() {
+    this.props.listMed();
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!isEqual(nextProps.medList, prevState.medList)) {
+      return {
+        medList: nextProps.medList
+      };
+    }
+    return null;
   }
 
   submitValues = () => {
     try {
-      this.props.addTime(this.state.value);
-      message.success("Time report succeeded")
+      const dateString=moment().format('DD-MM-YYYY');
+      const userId = localStorage.getItem('userId');
+      this.props.reportTime(userId, dateString);
+      this.setState({ buttonDisable: true });
+      message.success('Time report succeeded');
     } catch (e) {
       message.error('something went wrong');
     }
   };
 
-  updateValue = event => {
-    this.setState({ value: event.target.value });
-  };
-
   render() {
+    const today = moment().format('LL');
     return (
       <div className="form-wrapper">
-        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={this.updateValue} />
-        <Button type="primary" onClick={this.submitValues}>
-          Submit
+        <h3 className="centered">Report Date: {today}</h3>
+        <Divider />
+        <List
+          header={<div style={{ fontWeight: 'bold' }}>Your Medicines</div>}
+          bordered
+          dataSource={this.state.medList}
+          renderItem={item => <List.Item>{item.name}</List.Item>}
+        />
+        <Divider />
+        <Button type="primary" onClick={this.submitValues} disabled={this.state.buttonDisable}>
+          Report Medicine Taken
         </Button>
       </div>
     );
@@ -46,13 +71,14 @@ class ReportTakeMed extends Component {
 }
 
 ReportTakeMed.propTypes = {
-  addTime: PropTypes.func,
+  reportTime: PropTypes.func,
+  listMed: PropTypes.func,
   changePage: PropTypes.func
 };
 
 const mapStateToProps = state => {
   return {
-    userId: state.credential.payload,
+    medList: state.doctor.medList,
     nextPage: state.credential.nextPage
   };
 };
@@ -60,7 +86,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      addTime,
+      reportTime,
+      listMed,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch

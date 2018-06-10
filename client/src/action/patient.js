@@ -1,11 +1,11 @@
 import { ADD_TIME } from '../const/patient';
-import { addTimeService } from '../model/apiService';
+import { reportTimeService } from '../model/apiService';
 
-export const addTime = (values) => {
+export const reportTime = (userId, dateString) => {
   return dispatch => {
     dispatch({
       type: ADD_TIME,
-      payload: addTimeService(values)
+      payload: reportTimeService(userId, dateString)
     });
   };
 };

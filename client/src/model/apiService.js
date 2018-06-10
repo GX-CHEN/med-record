@@ -27,8 +27,8 @@ export function loginService(username, password) {
   });
 }
 
-export function addTimeService(values) {
-  return axios.post(`${baseURL}/api/patients`, { values }).then(function(res) {
+export function reportTimeService(patientId, dateString) {
+  return axios.put(`${baseURL}/api/timeReport`, { patient_id: patientId, date_report: dateString }).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
   });
