@@ -21,8 +21,19 @@ export default {
           })
           .catch(next);
       } else {
-        PatientReportModel.update({ patient_id }, { $push: { date_report } })
-          .then(result => res.status(200).send(result))
+        PatientReportModel.findOne({ patient_id }, { _id: 0, date_report: 1 })
+          .then(result => {
+            if (result.date_report.includes(date_report)) {
+              res.status(422).send("already reported for today");
+            } else {
+              PatientReportModel.update(
+                { patient_id },
+                { $push: { date_report } }
+              )
+                .then(result => res.status(200).send(result))
+                .catch(next);
+            }
+          })
           .catch(next);
       }
     });
