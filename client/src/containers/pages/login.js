@@ -92,7 +92,7 @@ class Login extends React.Component {
         this.failure(userId);
       } else {
         localStorage.setItem('userId', userId);
-        this.props.changePage('/reportIndex', { userId });
+        this.props.changePage('/reportTakeMed', { userId });
       }
     }
   }

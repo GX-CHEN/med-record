@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Icon, Input, Button, message } from 'antd';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import { addTime } from '../../action/patient';
+import { addMed } from '../../action/doctor';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-class ReportIndex extends Component {
+class DoctorDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ class ReportIndex extends Component {
 
   submitValues = () => {
     try {
-      this.props.addTime(this.state.value);
+      this.props.addMed(this.state.value);
     } catch (e) {
       message.error('something went wrong');
     }
@@ -39,8 +39,8 @@ class ReportIndex extends Component {
   }
 }
 
-ReportIndex.propTypes = {
-  addTime: PropTypes.func,
+DoctorDashboard.propTypes = {
+  addMed: PropTypes.func,
   changePage: PropTypes.func
 };
 
@@ -54,7 +54,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      addTime,
+      addMed,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch
@@ -63,4 +63,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ReportIndex);
+)(DoctorDashboard);

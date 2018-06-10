@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         payload,
-        nextPage: 'reportIndex'
+        nextPage: 'reportTakeMed'
       };
     }
     case LOGOUT_FULFILLED: {
