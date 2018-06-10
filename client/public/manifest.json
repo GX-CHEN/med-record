@@ -1,6 +1,6 @@
 {
   "name": "Med Time Record",
-  "short_name": "服药记录",
+  "short_name": "Med Record",
   "theme_color": "#70acd6",
   "background_color": "#ffffff",
   "display": "standalone",

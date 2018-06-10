@@ -34,8 +34,22 @@ export function addTimeService(values) {
   });
 }
 
-export function addMedService(values) {
-  return axios.post(`${baseURL}/api/addMed`, { values }).then(function(res) {
+export function addMedService(medName) {
+  return axios.post(`${baseURL}/api/med/add`, { name: medName }).then(function(res) {
+    if (res.status !== 200) throw new Error('bad response from server' + res.status);
+    return res.data;
+  });
+}
+
+export function deleteMedService(medId) {
+  return axios.put(`${baseURL}/api/med/delete`, { medId }).then(function(res) {
+    if (res.status !== 200) throw new Error('bad response from server' + res.status);
+    return res.data;
+  });
+}
+
+export function listMedService() {
+  return axios.get(`${baseURL}/api/med/list`).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
   });
@@ -47,4 +61,3 @@ export function listMedHistoryService(values) {
     return res.data;
   });
 }
-

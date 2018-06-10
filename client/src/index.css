@@ -14,6 +14,10 @@ button:disabled {
   opacity: 0.5;
 }
 
+.centered {
+  text-align: center;
+}
+
 .login-form,
 .form-wrapper {
   min-width: 250px;
@@ -35,4 +39,14 @@ button:disabled {
 
 .ant-btn {
   width: 100%;
+}
+
+.delete-med-icon {
+  font-size: 20px;
+  position: absolute;
+  right: 20px;
+}
+
+.delete-med-icon:hover {
+  color: red;
 }
