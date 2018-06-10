@@ -6,7 +6,7 @@ class ReportConfirm extends Component {
     return (
       <div>
         <div className="text-xs-left">Report Successfully!!!</div>
-        <Link to="/" className="btn btn-danger">
+        <Link to="/reportTakeMed" className="btn btn-danger">
           Go Back
         </Link>
       </div>

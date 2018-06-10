@@ -1,11 +1,11 @@
-import Patient from "../models/patient";
+import PatientModel from "../models/patientModel";
 
-module.exports = {
+export default {
   // next help tell the actual error
   create(req, res, next) {
     console.log("inside create with request body", req.body);
     const patientProps = req.body;
-    Patient.create(patientProps)
+    PatientModel.create(patientProps)
       .then(patient => res.send(patient))
       .catch(next);
   },
@@ -19,8 +19,8 @@ module.exports = {
     const t = patientProps.time;
 
     // patient is the stuff returned from find
-    Patient.findOneAndUpdate({ bangou: b }, { $push: { time: t } })
-      .then(() => Patient.findOne({ bangou: b }))
+    PatientModel.findOneAndUpdate({ bangou: b }, { $push: { time: t } })
+      .then(() => PatientModel.findOne({ bangou: b }))
       // get resp from the previous return
       .then(resp => {
         if (resp == null) {

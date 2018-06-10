@@ -1,9 +1,8 @@
-import mongoose from "mongoose";
-import User from "../models/user_schema";
+import User from "../models/userModel";
 import bcrypt from "bcrypt";
 
 export const signup = async (req, res, next) => {
-  console.log("inside signup")
+  console.log("inside signup");
   const data = req.body;
 
   User.find({ username: data.username }, async function(err, docs) {
@@ -11,7 +10,7 @@ export const signup = async (req, res, next) => {
       res.status(200).send(`user ${data.username} already exist`);
     } else {
       const user = new User({
-        ...data,
+        ...data
       });
       await user.save();
       res.status(200).send(user._id);
