@@ -29,7 +29,7 @@ export const login = (req, res, next) => {
     } else {
       bcrypt.compare(password, user.password, function(err, result) {
         if (result === true) {
-          return res.status(200).send(user._id);
+          return res.status(200).send({ userId: user._id, role: user.role });
         } else {
           return res.status(200).send(`login fail, wrong password ${password}`);
         }

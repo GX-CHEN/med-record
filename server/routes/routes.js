@@ -1,5 +1,5 @@
-import PatientController from "../controllers/patients_controller";
-import { login, signup } from "../controllers/user_controller";
+import PatientController from "../controllers/patientController";
+import { login, signup } from "../controllers/userController";
 
 export default app => {
   app.get("/api/patients", PatientController.create);

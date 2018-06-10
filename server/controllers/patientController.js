@@ -15,12 +15,12 @@ export default {
     console.log(req.body);
     const patientProps = req.body;
 
-    const b = patientProps.bangou;
+    const b = patientProps.patient_id;
     const t = patientProps.time;
 
     // patient is the stuff returned from find
-    PatientModel.findOneAndUpdate({ bangou: b }, { $push: { time: t } })
-      .then(() => PatientModel.findOne({ bangou: b }))
+    PatientModel.findOneAndUpdate({ patient_id: b }, { $push: { time: t } })
+      .then(() => PatientModel.findOne({ patient_id: b }))
       // get resp from the previous return
       .then(resp => {
         if (resp == null) {
