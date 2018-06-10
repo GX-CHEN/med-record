@@ -5,7 +5,7 @@ import { listMedHistory } from '../../action/doctor';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-class ViewMedHistory extends Component {
+class ManageMed extends Component {
   constructor(props) {
     super(props);
     const isDoctor = localStorage.getItem('doctorRole');
@@ -15,11 +15,11 @@ class ViewMedHistory extends Component {
   }
 
   render() {
-    return <div className="form-wrapper">Medical Hostory Record Table</div>;
+    return <div className="form-wrapper">Manage Medicine</div>;
   }
 }
 
-ViewMedHistory.propTypes = {
+ManageMed.propTypes = {
   listMedHistory: PropTypes.func,
   changePage: PropTypes.func
 };
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ViewMedHistory);
+)(ManageMed);

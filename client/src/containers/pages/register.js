@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Form, Icon, Input, Button, message, Divider } from 'antd';
 import { register } from '../../action/credential';
-import { includes } from 'lodash';
 import PropTypes from 'prop-types';
 const FormItem = Form.Item;
 
@@ -84,7 +83,7 @@ class NormalRegisterForm extends React.Component {
 NormalRegisterForm.propTypes = {
   form: PropTypes.object,
   register: PropTypes.func
-}
+};
 
 const WrappedNormalRegisterForm = Form.create()(NormalRegisterForm);
 
@@ -94,13 +93,11 @@ class Register extends React.Component {
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { userId } = nextProps;
-    if (userId) {
-      if (includes(userId, 'already exist')) {
-        this.error(userId);
-      } else {
-        this.props.changePage({ success: true });
-      }
+    const { errorMessage } = nextProps;
+    if (errorMessage) {
+      this.error(errorMessage);
+    } else {
+      this.props.changePage({ success: true });
     }
   }
 
@@ -116,8 +113,9 @@ Register.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    userId: state.credential.payload,
-    nextPage: state.credential.nextPage
+    userId: state.credential.userId,
+    doctorRole: state.credential.doctorRole,
+    errorMessage: state.credential.errorMessage
   };
 };
 

@@ -3,7 +3,6 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { login } from '../../action/credential';
-import { includes } from 'lodash';
 import { Form, Icon, Input, Button, Divider, message } from 'antd';
 import PropTypes from 'prop-types';
 const FormItem = Form.Item;
@@ -86,14 +85,14 @@ class Login extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { userId } = nextProps;
-    if (userId) {
-      if (includes(userId, 'fail')) {
-        this.failure(userId);
-      } else {
-        localStorage.setItem('userId', userId);
-        this.props.changePage('/reportTakeMed', { userId });
-      }
+    const { userId, doctorRole, errorMessage } = nextProps;
+
+    if (errorMessage) {
+      this.failure(errorMessage);
+    } else {
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('doctorRole', doctorRole);
+      this.props.changePage(doctorRole ? '/doctorDashboard' : '/reportTakeMed', { userId });
     }
   }
 
@@ -111,8 +110,9 @@ Login.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    userId: state.credential.payload,
-    nextPage: state.credential.nextPage
+    userId: state.credential.userId,
+    doctorRole: state.credential.doctorRole,
+    errorMessage: state.credential.errorMessage
   };
 };
 

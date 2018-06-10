@@ -8,8 +8,8 @@ var UserSchema = new mongoose.Schema(
   {
     username: String,
     password: String,
-    role: String,
-    med_ids: {type: Array, default: []},
+    doctor_role: { type: Boolean, default: false },
+    med_ids: { type: Array, default: [] },
     schedule_ids: { type: Array, default: [] }
   },
   { timestamps: true }

@@ -8,8 +8,9 @@ export default (state = initialState, action) => {
     case LOGIN_FULFILLED: {
       return {
         ...state,
-        payload,
-        nextPage: 'reportTakeMed'
+        userId: payload.userId,
+        doctorRole: payload.doctorRole,
+        errorMessage: payload.errorMessage
       };
     }
     case LOGOUT_FULFILLED: {
@@ -18,8 +19,9 @@ export default (state = initialState, action) => {
     case REGISTER_FULFILLED: {
       return {
         ...state,
-        payload,
-        nextPage: 'login'
+        userId: payload.userId,
+        doctorRole: payload.doctorRole,
+        errorMessage: payload.errorMessage
       };
     }
 

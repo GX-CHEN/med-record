@@ -29,7 +29,7 @@ class ReportTakeMed extends Component {
 
   render() {
     return (
-      <div className="report-index-form">
+      <div className="form-wrapper">
         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={this.updateValue} />
         <Button type="primary" onClick={this.submitValues}>
           Submit

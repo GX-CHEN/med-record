@@ -12,7 +12,6 @@ export default {
 
   edit(req, res, next) {
     // get the id subject from the url call
-    console.log(req.body);
     const patientProps = req.body;
 
     const b = patientProps.patient_id;

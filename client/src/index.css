@@ -15,7 +15,7 @@ button:disabled {
 }
 
 .login-form,
-.report-index-form {
+.form-wrapper {
   min-width: 250px;
   max-width: 350px;
   width: 50%;
@@ -28,8 +28,8 @@ button:disabled {
   right: 0;
 }
 
-.report-index-form button,
-.report-index-form input {
+.form-wrapper button,
+.form-wrapper input {
   margin: 10px 0;
 }
 
