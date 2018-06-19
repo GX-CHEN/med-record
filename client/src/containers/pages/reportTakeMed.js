@@ -3,7 +3,7 @@ import { List, Button, Divider, message } from 'antd';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { listMed } from '../../action/doctor';
-import { reportTime } from '../../action/patient';
+import { reportTime, checkWetherReported } from '../../action/patient';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
 import moment from 'moment';
@@ -20,18 +20,25 @@ class ReportTakeMed extends Component {
     super(props);
     this.state = {
       medList: [],
-      buttonDisable: false
+      isAlreadyReported: false
     };
   }
 
   componentDidMount() {
     this.props.listMed();
+    const dateString = moment().format('DD-MM-YYYY');
+    const userId = localStorage.getItem('userId');
+    this.props.checkWetherReported(userId, dateString);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (!isEqual(nextProps.medList, prevState.medList)) {
+    if (
+      !isEqual(nextProps.medList, prevState.medList) ||
+      !isEqual(nextProps.isAlreadyReported, prevState.isAlreadyReported)
+    ) {
       return {
-        medList: nextProps.medList
+        medList: nextProps.medList,
+        isAlreadyReported: nextProps.isAlreadyReported
       };
     }
     return null;
@@ -39,10 +46,10 @@ class ReportTakeMed extends Component {
 
   submitValues = () => {
     try {
-      const dateString=moment().format('DD-MM-YYYY');
+      const dateString = moment().format('DD-MM-YYYY');
       const userId = localStorage.getItem('userId');
       this.props.reportTime(userId, dateString);
-      this.setState({ buttonDisable: true });
+      this.setState({ isAlreadyReported: true });
       message.success('Time report succeeded');
     } catch (e) {
       message.error('something went wrong');
@@ -62,7 +69,7 @@ class ReportTakeMed extends Component {
           renderItem={item => <List.Item>{item.name}</List.Item>}
         />
         <Divider />
-        <Button type="primary" onClick={this.submitValues} disabled={this.state.buttonDisable}>
+        <Button type="primary" onClick={this.submitValues} disabled={this.state.isAlreadyReported}>
           Report Medicine Taken
         </Button>
       </div>
@@ -73,13 +80,16 @@ class ReportTakeMed extends Component {
 ReportTakeMed.propTypes = {
   reportTime: PropTypes.func,
   listMed: PropTypes.func,
+  checkWetherReported: PropTypes.func,
   changePage: PropTypes.func
 };
 
 const mapStateToProps = state => {
   return {
     medList: state.doctor.medList,
-    nextPage: state.credential.nextPage
+    nextPage: state.credential.nextPage,
+    isAlreadyReported: state.patient.isAlreadyReported,
+    reportSucceed: state.patient.reportSucceed
   };
 };
 
@@ -87,6 +97,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       reportTime,
+      checkWetherReported,
       listMed,
       changePage: (route, payload) => push(route, payload)
     },

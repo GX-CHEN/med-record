@@ -4,6 +4,7 @@ import { login, signup } from "../controllers/userController";
 
 export default app => {
   app.put("/api/timeReport", PatientController.addTimeRecord);
+  app.put("/api/ifAlreadyReported", PatientController.checkIfAlreadyReported);
 
   app.get("/api/med/list", MedController.list);
   app.post("/api/med/add", MedController.create);

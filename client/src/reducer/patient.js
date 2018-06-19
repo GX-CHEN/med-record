@@ -1,4 +1,4 @@
-import { ADD_TIME_FULFILLED } from '../const/patient';
+import { ADD_TIME_FULFILLED, CHECK_WETHER_REPORTED_FULFILLED } from '../const/patient';
 
 const initialState = {};
 
@@ -8,11 +8,16 @@ export default (state = initialState, action) => {
     case ADD_TIME_FULFILLED: {
       return {
         ...state,
-        payload,
+        reportSucceed: payload
       };
     }
-
+    case CHECK_WETHER_REPORTED_FULFILLED: {
+      return {
+        ...state,
+        isAlreadyReported: payload
+      };
+    }
     default:
-      return state;
+      return { ...state };
   }
 };

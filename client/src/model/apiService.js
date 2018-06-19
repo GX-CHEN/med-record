@@ -28,10 +28,26 @@ export function loginService(username, password) {
 }
 
 export function reportTimeService(patientId, dateString) {
+  /**
+   * Send patiendId and date (as string) to back-end, back-end will save it to date reporting array, which associated with patientId
+   */
   return axios.put(`${baseURL}/api/timeReport`, { patient_id: patientId, date_report: dateString }).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
     return res.data;
   });
+}
+
+export function checkWetherReportedService(patientId, dateString) {
+  /**
+   * This API is to know if a patient already reported on a certain day (represented with a dateString)
+   * @return Boolean
+   */
+  return axios
+    .put(`${baseURL}/api/ifAlreadyReported`, { patient_id: patientId, date_report: dateString })
+    .then(function(res) {
+      if (res.status !== 200) throw new Error('bad response from server' + res.status);
+      return res.data;
+    });
 }
 
 export function addMedService(medName) {
