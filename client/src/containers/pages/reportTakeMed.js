@@ -61,6 +61,11 @@ class ReportTakeMed extends Component {
     return (
       <div className="form-wrapper">
         <h3 className="centered">Report Date: {today}</h3>
+        {this.state.isAlreadyReported && (
+          <h4 style={{ color: 'orange' }} className="centered">
+            Good job! Already reported!
+          </h4>
+        )}
         <Divider />
         <List
           header={<div style={{ fontWeight: 'bold' }}>Your Medicines</div>}
