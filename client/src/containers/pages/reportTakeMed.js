@@ -34,11 +34,12 @@ class ReportTakeMed extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (
       !isEqual(nextProps.medList, prevState.medList) ||
-      !isEqual(nextProps.isAlreadyReported, prevState.isAlreadyReported)
+      !isEqual(nextProps.isAlreadyReported, prevState.isAlreadyReported) ||
+      !isEqual(nextProps.reportSucceed, prevState.reportSucceed)
     ) {
       return {
         medList: nextProps.medList,
-        isAlreadyReported: nextProps.isAlreadyReported
+        isAlreadyReported: nextProps.isAlreadyReported || nextProps.reportSucceed
       };
     }
     return null;
@@ -49,7 +50,6 @@ class ReportTakeMed extends Component {
       const dateString = moment().format('DD-MM-YYYY');
       const userId = localStorage.getItem('userId');
       this.props.reportTime(userId, dateString);
-      this.setState({ isAlreadyReported: true });
       message.success('Time report succeeded');
     } catch (e) {
       message.error('something went wrong');

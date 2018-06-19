@@ -40,14 +40,21 @@ export default {
     console.log("inside addTimeRecord with request body", req.body);
     const patient_id = req.body.patient_id;
     const date_report = req.body.date_report;
-    PatientReportModel.findOne({ patient_id }, { _id: 0, date_report: 1 })
-      .then(result => {
-        if (result.date_report.includes(date_report)) {
-          res.status(200).send(true);
-        } else {
-          res.status(200).send(false);
-        }
-      })
-      .catch(next);
+
+    PatientReportModel.find({ patient_id }).then(result => {
+      if (result.length === 0) {
+        res.status(200).send(false);
+      } else {
+        PatientReportModel.findOne({ patient_id }, { _id: 0, date_report: 1 })
+          .then(result => {
+            if (result.date_report.includes(date_report)) {
+              res.status(200).send(true);
+            } else {
+              res.status(200).send(false);
+            }
+          })
+          .catch(next);
+      }
+    });
   }
 };
