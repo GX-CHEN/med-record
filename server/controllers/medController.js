@@ -21,7 +21,6 @@ export default {
   },
 
   delete(req, res, next) {
-    console.log("inside delete med with request body", req.body);
     const medId = req.body.medId;
     MedModel.remove({ _id: medId })
       .then(() => {

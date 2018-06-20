@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { DatePicker, Divider, Table } from 'antd';
 import moment from 'moment';
+import { isEqual } from 'lodash';
 
 /**
  * This is a page only doctor have access to
@@ -13,29 +14,17 @@ import moment from 'moment';
  */
 
 const dateFormat = 'MM-DD-YYYY';
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike',
-    age: 32
-  },
-  {
-    key: '2',
-    name: 'John',
-    age: 42
-  }
-];
 
 const columns = [
   {
     title: 'Name',
-    dataIndex: 'name',
-    key: 'name'
+    dataIndex: 'username',
+    key: 'username'
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age'
+    title: 'Reported',
+    dataIndex: 'reported',
+    key: 'reported'
   }
 ];
 
@@ -52,6 +41,17 @@ class ViewMedHistory extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!isEqual(nextProps.tableData, prevState.tableData)) {
+      return { tableData: nextProps.tableData };
+    }
+    return null;
+  }
+
+  navigateToNoPermission = () => {
+    this.props.changePage('/noPermission');
+  };
+
   componentDidMount() {
     const dateString = moment().format('MM-DD-YYYY');
     this.props.listMedHistory(dateString);
@@ -66,12 +66,18 @@ class ViewMedHistory extends Component {
   };
 
   render() {
+    const { dateString, tableData } = this.state;
     return (
       <div className="form-wrapper centered">
-        <Divider className="divider-title centered">Med Date of {this.state.dateString}</Divider>
+        <Divider className="divider-title centered">Med Date of {dateString}</Divider>
         <div>
-          <DatePicker defaultValue={moment()} format={dateFormat} onChange={this.handleDateSelection} />
-          <Table dataSource={dataSource} columns={columns} pagination={false} size="small" />
+          <DatePicker
+            className="full-width"
+            defaultValue={moment()}
+            format={dateFormat}
+            onChange={this.handleDateSelection}
+          />
+          <Table dataSource={tableData} columns={columns} pagination={false} size="small" className="clear-fix" />
         </div>
       </div>
     );
@@ -86,7 +92,8 @@ ViewMedHistory.propTypes = {
 const mapStateToProps = state => {
   return {
     userId: state.credential.payload,
-    nextPage: state.credential.nextPage
+    nextPage: state.credential.nextPage,
+    tableData: state.doctor.tableData
   };
 };
 

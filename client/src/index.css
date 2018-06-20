@@ -58,3 +58,11 @@ button:disabled {
   font-weight: 400;
   margin-bottom: 40px;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.clear-fix {
+  margin-top: 20px;
+}

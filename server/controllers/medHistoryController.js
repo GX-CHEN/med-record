@@ -10,9 +10,9 @@ export default {
       const { _id, username } = patient;
       const record = await PatientReportModel.findOne({ patient_id: _id });
       if (record && includes(record.date_report, dateString)) {
-        return { username, reported: true };
+        return { key: _id, username, reported: "Yes" };
       } else {
-        return { username, reported: false };
+        return { key: _id, username, reported: "No" };
       }
     });
 

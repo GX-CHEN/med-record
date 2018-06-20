@@ -29,13 +29,7 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        // onCollapse={(collapsed, type) => {
-        //   console.log(collapsed, type);
-        // }}
-      >
+      <Sider breakpoint="lg" collapsedWidth="0">
         <div className="logo">ITS TIME</div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
           <Menu.Item key="1">
@@ -76,4 +70,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sidebar);

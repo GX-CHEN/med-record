@@ -28,6 +28,11 @@ class ManageMed extends Component {
     this.props.listMed();
   }
 
+  navigateToNoPermission = () => {
+    this.props.changePage('/noPermission');
+  };
+
+  
   static getDerivedStateFromProps(nextProps, prevState) {
     if (!isEqual(nextProps.medList, prevState.medList)) {
       return {

@@ -1,4 +1,9 @@
-import { ADD_MED_FULFILLED, DELETE_MED_FULFILLED, LIST_MED_FULFILLED } from '../const/doctor';
+import {
+  ADD_MED_FULFILLED,
+  DELETE_MED_FULFILLED,
+  LIST_MED_FULFILLED,
+  LIST_MED_HISTORY_FULFILLED
+} from '../const/doctor';
 
 const initialState = {};
 
@@ -26,6 +31,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         medList: payload.medList
+      };
+    }
+    case LIST_MED_HISTORY_FULFILLED: {
+      return {
+        ...state,
+        tableData: payload.tableData
       };
     }
 
