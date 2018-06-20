@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 /**
  * doctorDashboard contains two buttons
  * 1. Manage Meds
- * 2. Display user dialy reporting record
+ * 2. Display user daily reporting record
  */
 class DoctorDashboard extends Component {
   constructor(props) {

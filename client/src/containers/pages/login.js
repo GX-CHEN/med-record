@@ -23,16 +23,7 @@ class NormalLoginForm extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <Divider
-          style={{
-            fontSize: 22,
-            textAlign: 'center',
-            color: 'rgba(0, 0, 0, 0.65)',
-            fontWeight: 400,
-            marginBottom: 40
-          }}>
-          Login
-        </Divider>
+        <Divider className="divider-title centered">Login</Divider>
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }]

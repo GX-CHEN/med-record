@@ -1,5 +1,6 @@
 import PatientController from "../controllers/patientController";
 import MedController from "../controllers/medController";
+import MedHistoryController from "../controllers/medHistoryController";
 import { login, signup } from "../controllers/userController";
 
 export default app => {
@@ -12,4 +13,6 @@ export default app => {
 
   app.post("/api/login", login);
   app.post("/api/signup", signup);
+
+  app.post("/api/listMedHistory", MedHistoryController.list);
 };
