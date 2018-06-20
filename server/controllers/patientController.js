@@ -4,7 +4,7 @@ import PatientReportModel from "../models/patientReportModel";
  * This controller handles the patient reporting for their medicine intake time
  */
 export default {
-  // next help tell the actual error
+  // .catch(next) help tell the actual error. This is part of Express Framework
   addTimeRecord(req, res, next) {
     console.log("inside addTimeRecord with request body", req.body);
     const patient_id = req.body.patient_id;
@@ -37,7 +37,7 @@ export default {
   },
 
   checkIfAlreadyReported(req, res, next) {
-    console.log("inside addTimeRecord with request body", req.body);
+    console.log("inside checkIfAlreadyReported with request body", req.body);
     const patient_id = req.body.patient_id;
     const date_report = req.body.date_report;
 

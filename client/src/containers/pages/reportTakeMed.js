@@ -26,7 +26,7 @@ class ReportTakeMed extends Component {
 
   componentDidMount() {
     this.props.listMed();
-    const dateString = moment().format('DD-MM-YYYY');
+    const dateString = moment().format('MM-DD-YYYY');
     const userId = localStorage.getItem('userId');
     this.props.checkWetherReported(userId, dateString);
   }
@@ -47,7 +47,7 @@ class ReportTakeMed extends Component {
 
   submitValues = () => {
     try {
-      const dateString = moment().format('DD-MM-YYYY');
+      const dateString = moment().format('MM-DD-YYYY');
       const userId = localStorage.getItem('userId');
       this.props.reportTime(userId, dateString);
       message.success('Time report succeeded');
