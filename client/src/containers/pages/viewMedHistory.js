@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { listMedHistory } from '../../action/doctor';
+import { logout } from '../../action/credential';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { DatePicker, Divider, Table, Icon } from 'antd';
@@ -78,6 +79,7 @@ class ViewMedHistory extends Component {
       onOk: () => {
         localStorage.setItem('userId', '');
         localStorage.setItem('doctorRole', '');
+        this.props.logout();
         this.props.changePage('/');
       }
     });
@@ -105,7 +107,8 @@ class ViewMedHistory extends Component {
 
 ViewMedHistory.propTypes = {
   listMedHistory: PropTypes.func,
-  changePage: PropTypes.func
+  changePage: PropTypes.func,
+  logout: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -119,6 +122,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      logout,
       listMedHistory,
       changePage: (route, payload) => push(route, payload)
     },

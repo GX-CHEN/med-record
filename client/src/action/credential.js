@@ -23,7 +23,7 @@ export const logout = () => {
   return dispatch => {
     dispatch({
       type: LOGOUT,
-      payload: loginService(null, null)
+      payload: ''
     });
   };
 };

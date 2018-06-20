@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { deleteMed, addMed, listMed } from '../../action/doctor';
+import { logout } from '../../action/credential';
 import { connect } from 'react-redux';
 import { isEqual, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
@@ -70,6 +71,7 @@ class ManageMed extends Component {
       onOk: () => {
         localStorage.setItem('userId', '');
         localStorage.setItem('doctorRole', '');
+        this.props.logout();
         this.props.changePage('/');
       }
     });
@@ -110,7 +112,8 @@ ManageMed.propTypes = {
   deleteMed: PropTypes.func,
   addMed: PropTypes.func,
   listMed: PropTypes.func,
-  changePage: PropTypes.func
+  changePage: PropTypes.func,
+  logout: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -126,6 +129,7 @@ const mapDispatchToProps = dispatch =>
       listMed,
       addMed,
       deleteMed,
+      logout,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch

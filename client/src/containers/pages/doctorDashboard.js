@@ -3,6 +3,7 @@ import { Button, Divider, Icon } from 'antd';
 import { confirmationModal } from '../components/confirmationModal';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
+import { logout } from '../../action/credential';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -40,6 +41,7 @@ class DoctorDashboard extends Component {
       onOk: () => {
         localStorage.setItem('userId', '');
         localStorage.setItem('doctorRole', '');
+        this.props.logout();
         this.props.changePage('/');
       }
     });
@@ -62,7 +64,8 @@ class DoctorDashboard extends Component {
 }
 
 DoctorDashboard.propTypes = {
-  changePage: PropTypes.func
+  changePage: PropTypes.func,
+  logout: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -74,6 +77,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      logout,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch

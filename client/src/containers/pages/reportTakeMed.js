@@ -3,6 +3,7 @@ import { List, Button, Divider, Icon, message } from 'antd';
 import { confirmationModal } from '../components/confirmationModal';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
+import { logout } from '../../action/credential';
 import { listMed } from '../../action/doctor';
 import { reportTime, checkWetherReported } from '../../action/patient';
 import { connect } from 'react-redux';
@@ -66,6 +67,7 @@ class ReportTakeMed extends Component {
       onOk: () => {
         localStorage.setItem('userId', '');
         localStorage.setItem('doctorRole', '');
+        this.props.logout();
         this.props.changePage('/');
       }
     });
@@ -102,7 +104,8 @@ ReportTakeMed.propTypes = {
   reportTime: PropTypes.func,
   listMed: PropTypes.func,
   checkWetherReported: PropTypes.func,
-  changePage: PropTypes.func
+  changePage: PropTypes.func,
+  logout: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -120,6 +123,7 @@ const mapDispatchToProps = dispatch =>
       reportTime,
       checkWetherReported,
       listMed,
+      logout,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch

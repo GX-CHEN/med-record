@@ -88,6 +88,10 @@ NormalRegisterForm.propTypes = {
 const WrappedNormalRegisterForm = Form.create()(NormalRegisterForm);
 
 class Register extends React.Component {
+  success = content => {
+    message.success(content, 3);
+  };
+
   error = content => {
     message.error(content, 3);
   };
@@ -99,7 +103,8 @@ class Register extends React.Component {
     } else {
       localStorage.setItem('userId', '');
       localStorage.setItem('doctorRole', '');
-      this.props.changePage({ success: true });
+      this.success('User created, please login');
+      this.props.changePage();
     }
   }
 

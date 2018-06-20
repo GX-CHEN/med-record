@@ -60,10 +60,6 @@ NormalLoginForm.propTypes = {
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 class Login extends React.Component {
-  success = content => {
-    message.success(content, 3);
-  };
-
   failure = content => {
     message.error(content, 3);
   };
@@ -73,11 +69,6 @@ class Login extends React.Component {
     const doctorRole = localStorage.getItem('doctorRole');
     if (userId) {
       this.props.changePage(String(doctorRole) === 'true' ? '/doctorDashboard' : '/reportTakeMed', { userId });
-    }
-
-    const { location } = this.props;
-    if (location.state && location.state.success) {
-      this.success('User created, please login');
     }
   }
 

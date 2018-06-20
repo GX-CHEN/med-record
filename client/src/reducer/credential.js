@@ -1,4 +1,4 @@
-import { LOGIN_FULFILLED, LOGOUT_FULFILLED, REGISTER_FULFILLED } from '../const/credential';
+import { LOGIN_FULFILLED, LOGOUT, REGISTER_FULFILLED } from '../const/credential';
 
 const initialState = {};
 
@@ -13,8 +13,12 @@ export default (state = initialState, action) => {
         errorMessage: payload.errorMessage
       };
     }
-    case LOGOUT_FULFILLED: {
-      return {};
+    case LOGOUT: {
+      return {
+        ...state,
+        userId: '',
+        doctorRole: ''
+      };
     }
     case REGISTER_FULFILLED: {
       return {
