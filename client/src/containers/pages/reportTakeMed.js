@@ -25,9 +25,13 @@ class ReportTakeMed extends Component {
   }
 
   componentDidMount() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      this.props.changePage('/');
+    }
+
     this.props.listMed();
     const dateString = moment().format('MM-DD-YYYY');
-    const userId = localStorage.getItem('userId');
     this.props.checkWetherReported(userId, dateString);
   }
 

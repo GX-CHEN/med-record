@@ -69,6 +69,12 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
+    const userId = localStorage.getItem('userId');
+    const doctorRole = localStorage.getItem('doctorRole');
+    if (userId) {
+      this.props.changePage(String(doctorRole) === 'true' ? '/doctorDashboard' : '/reportTakeMed', { userId });
+    }
+
     const { location } = this.props;
     if (location.state && location.state.success) {
       this.success('User created, please login');
@@ -77,13 +83,12 @@ class Login extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const { userId, doctorRole, errorMessage } = nextProps;
-
     if (errorMessage) {
       this.failure(errorMessage);
     } else {
       localStorage.setItem('userId', userId);
       localStorage.setItem('doctorRole', doctorRole);
-      this.props.changePage(doctorRole ? '/doctorDashboard' : '/reportTakeMed', { userId });
+      this.props.changePage(String(doctorRole) === 'true' ? '/doctorDashboard' : '/reportTakeMed', { userId });
     }
   }
 

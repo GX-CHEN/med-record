@@ -31,10 +31,7 @@ const columns = [
 class ViewMedHistory extends Component {
   constructor(props) {
     super(props);
-    const isDoctor = localStorage.getItem('doctorRole');
-    if (isDoctor !== 'true') {
-      this.navigateToNoPermission();
-    }
+
     this.state = {
       dateString: null,
       tableData: []
@@ -53,6 +50,16 @@ class ViewMedHistory extends Component {
   };
 
   componentDidMount() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      this.props.changePage('/');
+    }
+
+    const isDoctor = localStorage.getItem('doctorRole');
+    if (isDoctor !== 'true') {
+      this.navigateToNoPermission();
+    }
+
     const dateString = moment().format('MM-DD-YYYY');
     this.props.listMedHistory(dateString);
     this.setState({ dateString });

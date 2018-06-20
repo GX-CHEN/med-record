@@ -11,8 +11,11 @@ import PropTypes from 'prop-types';
  * 2. Display user daily reporting record
  */
 class DoctorDashboard extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      this.props.changePage('/');
+    }
     const isDoctor = localStorage.getItem('doctorRole');
     if (isDoctor !== 'true') {
       this.navigateToNoPermission();

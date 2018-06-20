@@ -14,17 +14,22 @@ import { List, Divider, Input, Icon, Button, message } from 'antd';
 class ManageMed extends Component {
   constructor(props) {
     super(props);
-    const isDoctor = localStorage.getItem('doctorRole');
+
     this.state = {
       medList: [],
       medName: null
     };
-    if (isDoctor !== 'true') {
-      this.navigateToNoPermission();
-    }
   }
 
   componentDidMount() {
+    const userId = localStorage.getItem('userId');
+    const isDoctor = localStorage.getItem('doctorRole');
+    if (!userId) {
+      this.props.changePage('/');
+    }
+    if (isDoctor !== 'true') {
+      this.navigateToNoPermission();
+    }
     this.props.listMed();
   }
 
@@ -32,7 +37,6 @@ class ManageMed extends Component {
     this.props.changePage('/noPermission');
   };
 
-  
   static getDerivedStateFromProps(nextProps, prevState) {
     if (!isEqual(nextProps.medList, prevState.medList)) {
       return {

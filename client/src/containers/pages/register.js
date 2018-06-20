@@ -97,6 +97,8 @@ class Register extends React.Component {
     if (errorMessage) {
       this.error(errorMessage);
     } else {
+      localStorage.setItem('userId', '');
+      localStorage.setItem('doctorRole', '');
       this.props.changePage({ success: true });
     }
   }
