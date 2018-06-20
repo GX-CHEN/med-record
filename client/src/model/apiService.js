@@ -83,6 +83,6 @@ export function listMedService() {
 export function listMedHistoryService(dateString) {
   return axios.post(`${baseURL}/api/listMedHistory`, { dateString }).then(function(res) {
     if (res.status !== 200) throw new Error('bad response from server' + res.status);
-    return res.json();
+    return res.data;
   });
 }

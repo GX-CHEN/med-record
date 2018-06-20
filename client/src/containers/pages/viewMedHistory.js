@@ -69,7 +69,7 @@ class ViewMedHistory extends Component {
     return (
       <div className="form-wrapper centered">
         <Divider className="divider-title centered">Med Date of {this.state.dateString}</Divider>
-        <div className="form-wrapper">
+        <div>
           <DatePicker defaultValue={moment()} format={dateFormat} onChange={this.handleDateSelection} />
           <Table dataSource={dataSource} columns={columns} pagination={false} size="small" />
         </div>
