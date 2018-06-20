@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { isEqual, isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { List, Divider, Input, Icon, Button, message } from 'antd';
+import { confirmationModal } from '../components/confirmationModal';
 
 /**
  * This corresponding to the page for medicine management
@@ -64,6 +65,16 @@ class ManageMed extends Component {
     this.props.deleteMed(medId);
   };
 
+  handleLogout = () => {
+    confirmationModal({
+      onOk: () => {
+        localStorage.setItem('userId', '');
+        localStorage.setItem('doctorRole', '');
+        this.props.changePage('/');
+      }
+    });
+  };
+
   render() {
     return (
       <div className="form-wrapper">
@@ -89,6 +100,7 @@ class ManageMed extends Component {
         <Button type="primary" onClick={this.handleAddMed}>
           Add New Med
         </Button>
+        <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
       </div>
     );
   }

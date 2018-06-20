@@ -37,7 +37,8 @@ button:disabled {
   margin: 10px 0;
 }
 
-.ant-btn {
+.form-wrapper .ant-btn,
+.login-form .ant-btn {
   width: 100%;
 }
 
@@ -65,4 +66,16 @@ button:disabled {
 
 .clear-fix {
   margin-top: 20px;
+}
+
+.logout-icon {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  font-size: 30px;
+  color: tomato;
+}
+
+.logout-icon:hover {
+  color: red;
 }

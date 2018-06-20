@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { List, Button, Divider, message } from 'antd';
+import { List, Button, Divider, Icon, message } from 'antd';
+import { confirmationModal } from '../components/confirmationModal';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { listMed } from '../../action/doctor';
@@ -60,6 +61,16 @@ class ReportTakeMed extends Component {
     }
   };
 
+  handleLogout = () => {
+    confirmationModal({
+      onOk: () => {
+        localStorage.setItem('userId', '');
+        localStorage.setItem('doctorRole', '');
+        this.props.changePage('/');
+      }
+    });
+  };
+
   render() {
     const today = moment().format('LL');
     return (
@@ -81,6 +92,7 @@ class ReportTakeMed extends Component {
         <Button type="primary" onClick={this.submitValues} disabled={this.state.isAlreadyReported}>
           Report Medicine Taken
         </Button>
+        <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
       </div>
     );
   }

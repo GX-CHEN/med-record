@@ -4,7 +4,8 @@ import { push } from 'react-router-redux';
 import { listMedHistory } from '../../action/doctor';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { DatePicker, Divider, Table } from 'antd';
+import { DatePicker, Divider, Table, Icon } from 'antd';
+import { confirmationModal } from '../components/confirmationModal';
 import moment from 'moment';
 import { isEqual } from 'lodash';
 
@@ -72,6 +73,16 @@ class ViewMedHistory extends Component {
     }
   };
 
+  handleLogout = () => {
+    confirmationModal({
+      onOk: () => {
+        localStorage.setItem('userId', '');
+        localStorage.setItem('doctorRole', '');
+        this.props.changePage('/');
+      }
+    });
+  };
+
   render() {
     const { dateString, tableData } = this.state;
     return (
@@ -86,6 +97,7 @@ class ViewMedHistory extends Component {
           />
           <Table dataSource={tableData} columns={columns} pagination={false} size="small" className="clear-fix" />
         </div>
+        <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
       </div>
     );
   }

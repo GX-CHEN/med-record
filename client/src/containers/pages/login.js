@@ -94,7 +94,7 @@ class Login extends React.Component {
 
   render() {
     const { changePage } = this.props;
-    return <WrappedNormalLoginForm className="form-wrapper" changePage={changePage} login={this.props.login} />;
+    return <WrappedNormalLoginForm changePage={changePage} login={this.props.login} />;
   }
 }
 

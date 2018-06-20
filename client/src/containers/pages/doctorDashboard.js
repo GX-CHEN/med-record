@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Divider } from 'antd';
+import { Button, Divider, Icon } from 'antd';
+import { confirmationModal } from '../components/confirmationModal';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
@@ -34,6 +35,16 @@ class DoctorDashboard extends Component {
     this.props.changePage('/noPermission');
   };
 
+  handleLogout = () => {
+    confirmationModal({
+      onOk: () => {
+        localStorage.setItem('userId', '');
+        localStorage.setItem('doctorRole', '');
+        this.props.changePage('/');
+      }
+    });
+  };
+
   render() {
     return (
       <div className="form-wrapper">
@@ -44,6 +55,7 @@ class DoctorDashboard extends Component {
           View Med History
         </Button>
         <Button onClick={this.navigateToMedManagement}>Manages Medicine</Button>
+        <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
       </div>
     );
   }
