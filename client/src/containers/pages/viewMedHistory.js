@@ -87,6 +87,25 @@ class ViewMedHistory extends Component {
 
   render() {
     const { dateString, tableData } = this.state;
+    console.log(tableData);
+
+    let formattedTableData = [];
+    if (tableData) {
+      formattedTableData = tableData.map(row => {
+        const { key, username, reported } = row;
+        return {
+          key,
+          username,
+          reported:
+            reported === 'Yes' ? (
+              <Icon type="check" style={{ color: 'green' }} />
+            ) : (
+              <Icon type="close" style={{ color: 'red' }} />
+            )
+        };
+      });
+    }
+
     return (
       <div className="form-wrapper centered">
         <Divider className="divider-title centered">Med Date of {dateString}</Divider>
@@ -97,7 +116,13 @@ class ViewMedHistory extends Component {
             format={dateFormat}
             onChange={this.handleDateSelection}
           />
-          <Table dataSource={tableData} columns={columns} pagination={false} size="small" className="clear-fix" />
+          <Table
+            dataSource={formattedTableData}
+            columns={columns}
+            pagination={false}
+            size="small"
+            className="clear-fix"
+          />
         </div>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
       </div>
