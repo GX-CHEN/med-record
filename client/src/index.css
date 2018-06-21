@@ -15,7 +15,16 @@ button:disabled {
 }
 
 .centered {
-  text-align: center;
+  text-align: center !important;
+}
+
+.ant-table-content th,
+.ant-table-content td {
+  text-align: center !important;
+}
+
+.anticon {
+  font-weight: 900;
 }
 
 .login-form,
