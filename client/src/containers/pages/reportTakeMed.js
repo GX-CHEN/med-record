@@ -22,19 +22,13 @@ class ReportTakeMed extends Component {
     super(props);
     this.state = {
       medList: [],
-      isAlreadyReported: false
+      isAlreadyReported: false,
+      loading: false
     };
   }
 
   componentDidMount() {
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
-      this.props.changePage('/');
-    }
-
-    this.props.listMed();
-    const dateString = moment().format('MM-DD-YYYY');
-    this.props.checkWetherReported(userId, dateString);
+    this.handleReload();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -73,6 +67,22 @@ class ReportTakeMed extends Component {
     });
   };
 
+  handleReload = () => {
+    this.setState({ loading: true });
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      this.props.changePage('/');
+    }
+
+    this.props.listMed();
+    const dateString = moment().format('MM-DD-YYYY');
+    this.props.checkWetherReported(userId, dateString);
+    setTimeout(() => {
+      this.setState({ loading: false });
+      message.success('Data Updated', 1);
+    }, 1000);
+  };
+
   render() {
     const today = moment().format('LL');
     return (
@@ -95,6 +105,7 @@ class ReportTakeMed extends Component {
           Report Medicine Taken
         </Button>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
+        <Icon type={this.state.loading ? 'loading' : 'reload'} className="reload-icon" onClick={this.handleReload} />
       </div>
     );
   }

@@ -39,6 +39,10 @@ class ManageMed extends Component {
     this.props.changePage('/noPermission');
   };
 
+  navigateHome = () => {
+    this.props.changePage('/doctorDashboard');
+  };
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (!isEqual(nextProps.medList, prevState.medList)) {
       return {
@@ -103,6 +107,7 @@ class ManageMed extends Component {
           Add New Med
         </Button>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
+        <Icon type="home" className="home-icon" onClick={this.navigateHome} />
       </div>
     );
   }

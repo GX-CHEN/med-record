@@ -79,12 +79,36 @@ button:disabled {
 
 .logout-icon {
   position: fixed;
-  bottom: 5%;
+  bottom: 4%;
   right: 5%;
-  font-size: 30px;
+  font-size: 26px;
   color: tomato;
 }
 
 .logout-icon:hover {
   color: red;
+}
+
+.reload-icon {
+  position: fixed;
+  bottom: 4%;
+  left: 5%;
+  font-size: 26px;
+  color: lightslategray;
+}
+
+.reload-icon:hover {
+  color: slategray;
+}
+
+.home-icon {
+  position: fixed;
+  bottom: 11%;
+  right: 5%;
+  font-size: 30px;
+  color: lightseagreen;
+}
+
+.home-icon:hover {
+  color: seagreen;
 }

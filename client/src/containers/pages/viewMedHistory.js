@@ -51,6 +51,10 @@ class ViewMedHistory extends Component {
     this.props.changePage('/noPermission');
   };
 
+  navigateHome = () => {
+    this.props.changePage('/doctorDashboard');
+  };
+
   componentDidMount() {
     const userId = localStorage.getItem('userId');
     if (!userId) {
@@ -87,7 +91,6 @@ class ViewMedHistory extends Component {
 
   render() {
     const { dateString, tableData } = this.state;
-    console.log(tableData);
 
     let formattedTableData = [];
     if (tableData) {
@@ -125,6 +128,7 @@ class ViewMedHistory extends Component {
           />
         </div>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
+        <Icon type="home" className="home-icon" onClick={this.navigateHome} />
       </div>
     );
   }

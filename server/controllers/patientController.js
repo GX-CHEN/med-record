@@ -6,7 +6,6 @@ import PatientReportModel from "../models/patientReportModel";
 export default {
   // .catch(next) help tell the actual error. This is part of Express Framework
   addTimeRecord(req, res, next) {
-    console.log("inside addTimeRecord with request body", req.body);
     const patient_id = req.body.patient_id;
     const date_report = req.body.date_report;
 
@@ -37,7 +36,6 @@ export default {
   },
 
   checkIfAlreadyReported(req, res, next) {
-    console.log("inside checkIfAlreadyReported with request body", req.body);
     const patient_id = req.body.patient_id;
     const date_report = req.body.date_report;
 
