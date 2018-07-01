@@ -4,10 +4,13 @@ import { confirmationModal } from '../components/confirmationModal';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { logout } from '../../action/credential';
+import { clearReportingData } from '../../action/patient';
 import { listMed } from '../../action/doctor';
 import { reportTime, checkWetherReported } from '../../action/patient';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
+import { clearLocalStorage } from '../../model/utils';
+import text from '../../const/text';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
@@ -23,7 +26,8 @@ class ReportTakeMed extends Component {
     this.state = {
       medList: [],
       isAlreadyReported: false,
-      loading: false
+      loading: false,
+      language: localStorage.getItem('language')
     };
   }
 
@@ -59,12 +63,21 @@ class ReportTakeMed extends Component {
   handleLogout = () => {
     confirmationModal({
       onOk: () => {
-        localStorage.setItem('userId', '');
-        localStorage.setItem('doctorRole', '');
+        clearLocalStorage();
         this.props.logout();
+        this.props.clearReportingData();
         this.props.changePage('/');
       }
     });
+  };
+
+  changeLanguage = () => {
+    if (this.state.language === 'en') {
+      localStorage.setItem('language', 'cn');
+    } else {
+      localStorage.setItem('language', 'en');
+    }
+    window.location.reload();
   };
 
   handleReload = () => {
@@ -85,27 +98,36 @@ class ReportTakeMed extends Component {
 
   render() {
     const today = moment().format('LL');
+    const username = localStorage.getItem('username');
     return (
       <div className="form-wrapper">
-        <h3 className="centered">Report Date: {today}</h3>
+        <h3 className="centered">
+          {text.hello}, {username}!
+        </h3>
+        <h3 className="centered">
+          {text.reportTime}: {today}
+        </h3>
         {this.state.isAlreadyReported && (
           <h4 style={{ color: 'orange' }} className="centered">
-            Good job! Already reported!
+            {text.confirmMedTaken}
           </h4>
         )}
         <Divider />
         <List
-          header={<div style={{ fontWeight: 'bold' }}>Your Medicines</div>}
+          header={<div style={{ fontWeight: 'bold' }}>{text.yourMeds}</div>}
           bordered
           dataSource={this.state.medList}
           renderItem={item => <List.Item>{item.name}</List.Item>}
         />
         <Divider />
         <Button type="primary" onClick={this.submitValues} disabled={this.state.isAlreadyReported}>
-          Report Medicine Taken
+          {text.reportMedTaken}
         </Button>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
         <Icon type={this.state.loading ? 'loading' : 'reload'} className="reload-icon" onClick={this.handleReload} />
+        <Button type="primary" shape="circle" className="language-button" onClick={this.changeLanguage}>
+          {this.state.language === 'en' ? '中' : 'EN'}
+        </Button>
       </div>
     );
   }
@@ -116,7 +138,8 @@ ReportTakeMed.propTypes = {
   listMed: PropTypes.func,
   checkWetherReported: PropTypes.func,
   changePage: PropTypes.func,
-  logout: PropTypes.func
+  logout: PropTypes.func,
+  clearReportingData: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -135,6 +158,7 @@ const mapDispatchToProps = dispatch =>
       checkWetherReported,
       listMed,
       logout,
+      clearReportingData,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch

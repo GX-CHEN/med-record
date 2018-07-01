@@ -1,4 +1,4 @@
-import { ADD_TIME_FULFILLED, CHECK_WETHER_REPORTED_FULFILLED } from '../const/patient';
+import { ADD_TIME_FULFILLED, CHECK_WETHER_REPORTED_FULFILLED, CLEAR_REPORTING_DATA } from '../const/patient';
 
 const initialState = {};
 
@@ -15,6 +15,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAlreadyReported: payload
+      };
+    }
+    case CLEAR_REPORTING_DATA: {
+      return {
+        ...state,
+        reportSucceed: '',
+        isAlreadyReported: ''
       };
     }
     default:

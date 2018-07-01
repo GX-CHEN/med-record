@@ -4,7 +4,10 @@ import { confirmationModal } from '../components/confirmationModal';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { logout } from '../../action/credential';
+import { clearReportingData } from '../../action/patient';
 import { connect } from 'react-redux';
+import { clearLocalStorage } from '../../model/utils';
+import text from '../../const/text';
 import PropTypes from 'prop-types';
 
 /**
@@ -13,6 +16,13 @@ import PropTypes from 'prop-types';
  * 2. Display user daily reporting record
  */
 class DoctorDashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      language: localStorage.getItem('language')
+    };
+  }
+
   componentDidMount() {
     const userId = localStorage.getItem('userId');
     if (!userId) {
@@ -39,25 +49,37 @@ class DoctorDashboard extends Component {
   handleLogout = () => {
     confirmationModal({
       onOk: () => {
-        localStorage.setItem('userId', '');
-        localStorage.setItem('doctorRole', '');
+        clearLocalStorage();
         this.props.logout();
+        this.props.clearReportingData();
         this.props.changePage('/');
       }
     });
+  };
+
+  changeLanguage = () => {
+    if (this.state.language === 'en') {
+      localStorage.setItem('language', 'cn');
+    } else {
+      localStorage.setItem('language', 'en');
+    }
+    window.location.reload();
   };
 
   render() {
     return (
       <div className="form-wrapper">
         <Divider>
-          <span style={{ fontSize: '24px', color: 'gray' }}>Welcome, Doctor!</span>
+          <span style={{ fontSize: '24px', color: 'gray' }}>{text.helloDoctor}</span>
         </Divider>
         <Button type="primary" onClick={this.navigateToMedHistory}>
-          View Med History
+          {text.viewMedHistory}
         </Button>
-        <Button onClick={this.navigateToMedManagement}>Manages Medicine</Button>
+        <Button onClick={this.navigateToMedManagement}>{text.managesMedicine}</Button>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
+        <Button type="primary" shape="circle" className="language-button" onClick={this.changeLanguage}>
+          {this.state.language === 'en' ? '中' : 'EN'}
+        </Button>
       </div>
     );
   }
@@ -65,7 +87,8 @@ class DoctorDashboard extends Component {
 
 DoctorDashboard.propTypes = {
   changePage: PropTypes.func,
-  logout: PropTypes.func
+  logout: PropTypes.func,
+  clearReportingData: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -78,6 +101,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       logout,
+      clearReportingData,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch

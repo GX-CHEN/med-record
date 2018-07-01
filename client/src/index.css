@@ -101,6 +101,14 @@ button:disabled {
   color: slategray;
 }
 
+.language-button {
+  width: 36px !important;
+  height: 36px !important;
+  position: fixed;
+  top: 4%;
+  left: 5%;
+}
+
 .home-icon {
   position: fixed;
   bottom: 11%;
@@ -111,4 +119,8 @@ button:disabled {
 
 .home-icon:hover {
   color: seagreen;
+}
+
+.ant-input {
+  font-size: 16px;
 }

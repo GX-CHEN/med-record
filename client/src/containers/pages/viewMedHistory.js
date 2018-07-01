@@ -3,10 +3,13 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { listMedHistory } from '../../action/doctor';
 import { logout } from '../../action/credential';
+import { clearReportingData } from '../../action/patient';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { DatePicker, Divider, Table, Icon } from 'antd';
 import { confirmationModal } from '../components/confirmationModal';
+import { clearLocalStorage } from '../../model/utils';
+import text from '../../const/text';
 import moment from 'moment';
 import { isEqual } from 'lodash';
 
@@ -81,9 +84,9 @@ class ViewMedHistory extends Component {
   handleLogout = () => {
     confirmationModal({
       onOk: () => {
-        localStorage.setItem('userId', '');
-        localStorage.setItem('doctorRole', '');
+        clearLocalStorage();
         this.props.logout();
+        this.props.clearReportingData();
         this.props.changePage('/');
       }
     });
@@ -111,7 +114,9 @@ class ViewMedHistory extends Component {
 
     return (
       <div className="form-wrapper centered">
-        <Divider className="divider-title centered">Med Date of {dateString}</Divider>
+        <Divider className="divider-title centered">
+          {text.reportTime} {dateString}
+        </Divider>
         <div>
           <DatePicker
             className="full-width"
@@ -125,6 +130,7 @@ class ViewMedHistory extends Component {
             pagination={false}
             size="small"
             className="clear-fix"
+            style={{ marginBottom: 100 }}
           />
         </div>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
@@ -137,7 +143,8 @@ class ViewMedHistory extends Component {
 ViewMedHistory.propTypes = {
   listMedHistory: PropTypes.func,
   changePage: PropTypes.func,
-  logout: PropTypes.func
+  logout: PropTypes.func,
+  clearReportingData: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -153,6 +160,7 @@ const mapDispatchToProps = dispatch =>
     {
       logout,
       listMedHistory,
+      clearReportingData,
       changePage: (route, payload) => push(route, payload)
     },
     dispatch

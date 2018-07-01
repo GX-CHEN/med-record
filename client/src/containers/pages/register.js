@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Form, Icon, Input, Button, message, Divider } from 'antd';
 import { register } from '../../action/credential';
+import { clearLocalStorage } from '../../model/utils';
+import text from '../../const/text';
 import PropTypes from 'prop-types';
 const FormItem = Form.Item;
 
@@ -38,12 +40,12 @@ class NormalRegisterForm extends React.Component {
             fontWeight: 400,
             marginBottom: 40
           }}>
-          Register
+          {text.register}
         </Divider>
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }]
-          })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />)}
+          })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder={text.username} />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
@@ -52,7 +54,7 @@ class NormalRegisterForm extends React.Component {
             <Input
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
-              placeholder="Password"
+              placeholder={text.password}
             />
           )}
         </FormItem>
@@ -66,13 +68,20 @@ class NormalRegisterForm extends React.Component {
             <Input
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
-              placeholder="Confirm Password"
+              placeholder={text.confirmPassword}
             />
           )}
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Register
+            {text.register}
+          </Button>
+          <Button
+            type="default"
+            style={{ marginTop: 10 }}
+            className="login-form-button"
+            onClick={() => this.props.changePage('/login')}>
+            {text.cancel}
           </Button>
         </FormItem>
       </Form>
@@ -82,18 +91,19 @@ class NormalRegisterForm extends React.Component {
 
 NormalRegisterForm.propTypes = {
   form: PropTypes.object,
-  register: PropTypes.func
+  register: PropTypes.func,
+  changePage: PropTypes.func
 };
 
 const WrappedNormalRegisterForm = Form.create()(NormalRegisterForm);
 
 class Register extends React.Component {
   success = content => {
-    message.success(content, 3);
+    message.success(content, 2);
   };
 
   error = content => {
-    message.error(content, 3);
+    message.error(content, 2);
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -101,15 +111,20 @@ class Register extends React.Component {
     if (errorMessage) {
       this.error(errorMessage);
     } else {
-      localStorage.setItem('userId', '');
-      localStorage.setItem('doctorRole', '');
+      clearLocalStorage();
       this.success('User created, please login');
       this.props.changePage();
     }
   }
 
   render() {
-    return <WrappedNormalRegisterForm className="form-wrapper" register={this.props.register} />;
+    return (
+      <WrappedNormalRegisterForm
+        className="form-wrapper"
+        register={this.props.register}
+        changePage={this.props.changePage}
+      />
+    );
   }
 }
 

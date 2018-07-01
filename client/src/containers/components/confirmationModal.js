@@ -1,9 +1,10 @@
 import { Modal as AntModal } from 'antd';
+import text from '../../const/text';
 
 export function confirmationModal(props) {
   const defaultProps = {
-    title: 'Confirm Logout',
-    content: 'Are you sure to logout?',
+    title: text.logout,
+    content: text.confirmLogout,
     onOk: () => null,
     closable: true,
     iconType: '',

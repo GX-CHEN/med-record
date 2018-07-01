@@ -3,6 +3,7 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { login } from '../../action/credential';
+import text from '../../const/text';
 import { Form, Icon, Input, Button, Divider, message } from 'antd';
 import PropTypes from 'prop-types';
 const FormItem = Form.Item;
@@ -23,11 +24,11 @@ class NormalLoginForm extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <Divider className="divider-title centered">Login</Divider>
+        <Divider className="divider-title centered">{text.login}</Divider>
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }]
-          })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />)}
+          })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder={text.username} />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
@@ -36,15 +37,15 @@ class NormalLoginForm extends React.Component {
             <Input
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
-              placeholder="Password"
+              placeholder={text.password}
             />
           )}
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Log in
+            {text.login}
           </Button>
-          Or <a onClick={() => changePage('/register')}>register now!</a>
+          Or <a onClick={() => changePage('/register')}>{text.registerNow}</a>
         </FormItem>
       </Form>
     );
@@ -61,7 +62,7 @@ const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 class Login extends React.Component {
   failure = content => {
-    message.error(content, 3);
+    message.error(content, 2);
   };
 
   componentDidMount() {
@@ -73,11 +74,12 @@ class Login extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { userId, doctorRole, errorMessage } = nextProps;
+    const { userId, doctorRole, username, errorMessage } = nextProps;
     if (errorMessage) {
       this.failure(errorMessage);
     } else {
       localStorage.setItem('userId', userId);
+      localStorage.setItem('username', username);
       localStorage.setItem('doctorRole', doctorRole);
       this.props.changePage(String(doctorRole) === 'true' ? '/doctorDashboard' : '/reportTakeMed', { userId });
     }
@@ -99,7 +101,8 @@ const mapStateToProps = state => {
   return {
     userId: state.credential.userId,
     doctorRole: state.credential.doctorRole,
-    errorMessage: state.credential.errorMessage
+    errorMessage: state.credential.errorMessage,
+    username: state.credential.username
   };
 };
 

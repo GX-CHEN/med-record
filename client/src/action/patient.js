@@ -1,4 +1,4 @@
-import { ADD_TIME, CHECK_WETHER_REPORTED } from '../const/patient';
+import { ADD_TIME, CHECK_WETHER_REPORTED, CLEAR_REPORTING_DATA } from '../const/patient';
 import { reportTimeService, checkWetherReportedService } from '../model/apiService';
 
 export const reportTime = (userId, dateString) => {
@@ -15,6 +15,15 @@ export const checkWetherReported = (userId, dateString) => {
     dispatch({
       type: CHECK_WETHER_REPORTED,
       payload: checkWetherReportedService(userId, dateString)
+    });
+  };
+};
+
+export const clearReportingData = () => {
+  return dispatch => {
+    dispatch({
+      type: CLEAR_REPORTING_DATA,
+      payload: ''
     });
   };
 };

@@ -28,7 +28,7 @@ export const login = (req, res, next) => {
     } else {
       bcrypt.compare(password, user.password, function(err, result) {
         if (result === true) {
-          return res.status(200).send({ userId: user._id, doctorRole: user.doctor_role });
+          return res.status(200).send({ userId: user._id, doctorRole: user.doctor_role, username });
         } else {
           return res.status(200).send({ errorMessage: `login fail, wrong password ${password}` });
         }

@@ -10,14 +10,16 @@ export default (state = initialState, action) => {
         ...state,
         userId: payload.userId,
         doctorRole: payload.doctorRole,
-        errorMessage: payload.errorMessage
+        errorMessage: payload.errorMessage,
+        username: payload.username
       };
     }
     case LOGOUT: {
       return {
         ...state,
         userId: '',
-        doctorRole: ''
+        doctorRole: '',
+        username: ''
       };
     }
     case REGISTER_FULFILLED: {
