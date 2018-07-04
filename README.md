@@ -8,31 +8,6 @@ https://biteapie.com
 Doctor Account: doctor/doctor
 Patient Account: test/test
 
-## Use the following commands to build and run the app
-
-Front-end is using React, back-end is using NodeJS. The core technologies are both JavaScript, and both packaged using npm (node package manager)
-
-### Install global npm command
-
-```
-npm install -g nodemon
-npm install -g serve
-```
-
-### Build and run
-
-There are two folders inside the project, one is node back-end (server), the other one is react frontend (client), go to each folder and run `npm install` to install dependencies. Then go to each folder to run `npm start` to start the application
-
-### RESTful URI
-
-CRUD (create, read, update, delete) action for the following type:
-
-1.  User account
-2.  Medicine
-3.  Experiment
-4.  Daily report for med taken (patient)
-5.  Read record (table view for doctor)
-
 ## Application Screenshots
 
 ### Login Page (in English and Chinese), language can switch using top-left icon
@@ -59,3 +34,28 @@ CRUD (create, read, update, delete) action for the following type:
 <img src="screenshots/med_management.jpg" alt="Med Management" width="300" />
 <div style="clear: both;"></div>
 </p>
+
+## Use the following commands to build and run the app
+
+Front-end is using React, back-end is using NodeJS. The core technologies are both JavaScript, and both packaged using npm (node package manager)
+
+### Install global npm command
+
+```
+npm install -g nodemon
+npm install -g serve
+```
+
+### Build and run
+
+There are two folders inside the project, one is node back-end (server), the other one is react frontend (client), go to each folder and run `npm install` to install dependencies. Then go to each folder to run `npm start` to start the application
+
+### RESTful URI
+
+CRUD (create, read, update, delete) action for the following type:
+
+1.  User account
+2.  Medicine
+3.  Experiment
+4.  Daily report for med taken (patient)
+5.  Read record (table view for doctor)
