@@ -1,37 +1,37 @@
 ## Med Schedule Web App
 
-Responsive React Web App that record the medicine take schedule with English/Chinese support
+Responsive React Web App that record the medicine take schedule with English/Chinese support. Language switch in one click.
 
 ## Demo Website
 
-https://biteapie.com
-Doctor Account: doctor/doctor
-Patient Account: test/test
+- https://biteapie.com
+- Doctor Account: doctor/doctor
+- Patient Account: test/test
 
 ## Application Screenshots
 
 ### Login Page (in English and Chinese), language can switch using top-left icon
 
 <p float="left">
-<img src="screenshots/login.jpg" alt="Login Page"  width="300"/>
-<img src="screenshots/login_chinese.jpg" alt="Login Page (in Chinese)" width="300" />
+<img src="screenshots/login.jpg" alt="Login Page"  width="260"/>
+<img src="screenshots/login_chinese.jpg" alt="Login Page (in Chinese)" width="260" />
 </p>
 <div style="clear: both;"></div>
 
 ### Patients have daily report page (report icon will be disabled after reporting until next day)
 
 <p float="left">
-<img src="screenshots/patient_reporting.jpg" alt="Patient Reporting" width="300" />
-<img src="screenshots/reporting_confirmation.jpg" alt="Reporting Confirmation" width="300" />
-<img src="screenshots/reporting_refresh.jpg" alt="Reporting Refresh" width="300" />
+<img src="screenshots/patient_reporting.jpg" alt="Patient Reporting" width="260" />
+<img src="screenshots/reporting_confirmation.jpg" alt="Reporting Confirmation" width="260" />
+<img src="screenshots/reporting_refresh.jpg" alt="Reporting Refresh" width="260" />
 </p>
 <div style="clear: both;"></div>
 
 ### Doctor can manage medicines, and view med taken history
 
 <p float="left">
-<img src="screenshots/med_history.jpg" alt="Med History" width="300" />
-<img src="screenshots/med_management.jpg" alt="Med Management" width="300" />
+<img src="screenshots/med_history.jpg" alt="Med History" width="260" />
+<img src="screenshots/med_management.jpg" alt="Med Management" width="260" />
 <div style="clear: both;"></div>
 </p>
 
