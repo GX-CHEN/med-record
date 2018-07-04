@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { login } from '../../action/credential';
 import text from '../../const/text';
 import { Form, Icon, Input, Button, Divider, message } from 'antd';
+import { changeLanguage } from '../../model/utils';
 import PropTypes from 'prop-types';
 const FormItem = Form.Item;
 
@@ -61,6 +62,13 @@ NormalLoginForm.propTypes = {
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      language: localStorage.getItem('language')
+    };
+  }
+
   failure = content => {
     message.error(content, 2);
   };
@@ -87,7 +95,18 @@ class Login extends React.Component {
 
   render() {
     const { changePage } = this.props;
-    return <WrappedNormalLoginForm changePage={changePage} login={this.props.login} />;
+    return (
+      <div>
+        <WrappedNormalLoginForm changePage={changePage} login={this.props.login} />
+        <Button
+          type="primary"
+          shape="circle"
+          className="language-button"
+          onClick={changeLanguage.bind(this, this.state.language)}>
+          {this.state.language === 'en' ? '中' : 'EN'}
+        </Button>
+      </div>
+    );
   }
 }
 

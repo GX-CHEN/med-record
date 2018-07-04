@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 import { logout } from '../../action/credential';
 import { clearReportingData } from '../../action/patient';
 import { connect } from 'react-redux';
-import { clearLocalStorage } from '../../model/utils';
+import { clearLocalStorage, changeLanguage } from '../../model/utils';
 import text from '../../const/text';
 import PropTypes from 'prop-types';
 
@@ -57,15 +57,6 @@ class DoctorDashboard extends Component {
     });
   };
 
-  changeLanguage = () => {
-    if (this.state.language === 'en') {
-      localStorage.setItem('language', 'cn');
-    } else {
-      localStorage.setItem('language', 'en');
-    }
-    window.location.reload();
-  };
-
   render() {
     return (
       <div className="form-wrapper">
@@ -77,7 +68,11 @@ class DoctorDashboard extends Component {
         </Button>
         <Button onClick={this.navigateToMedManagement}>{text.managesMedicine}</Button>
         <Icon type="logout" className="logout-icon" onClick={this.handleLogout} />
-        <Button type="primary" shape="circle" className="language-button" onClick={this.changeLanguage}>
+        <Button
+          type="primary"
+          shape="circle"
+          className="language-button"
+          onClick={changeLanguage.bind(this, this.state.language)}>
           {this.state.language === 'en' ? '中' : 'EN'}
         </Button>
       </div>
