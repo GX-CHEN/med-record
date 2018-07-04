@@ -37,19 +37,25 @@ CRUD (create, read, update, delete) action for the following type:
 
 ### Login Page (in English and Chinese), language can switch using top-left icon
 
+<p float="left">
 <img src="screenshots/login.jpg" alt="Login Page"  width="300"/>
 <img src="screenshots/login_chinese.jpg" alt="Login Page (in Chinese)" width="300" />
+</p>
 <div style="clear: both;"></div>
 
 ### Patients have daily report page (report icon will be disabled after reporting until next day)
 
+<p float="left">
 <img src="screenshots/patient_reporting.jpg" alt="Patient Reporting" width="300" />
 <img src="screenshots/reporting_confirmation.jpg" alt="Reporting Confirmation" width="300" />
 <img src="screenshots/reporting_refresh.jpg" alt="Reporting Refresh" width="300" />
+</p>
 <div style="clear: both;"></div>
 
 ### Doctor can manage medicines, and view med taken history
 
+<p float="left">
 <img src="screenshots/med_history.jpg" alt="Med History" width="300" />
 <img src="screenshots/med_management.jpg" alt="Med Management" width="300" />
 <div style="clear: both;"></div>
+</p>
