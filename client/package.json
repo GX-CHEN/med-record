@@ -1,5 +1,5 @@
 {
-  "name": "clinical-trial-record-client",
+  "name": "med-schedule-client",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -26,8 +26,6 @@
     "react-router-dom": "^4.3.1",
     "react-router-redux": "next",
     "redux": "^4.0.0",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-form": "^7.3.0",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.3.0",
     "sanitize.css": "^5.0.0"
