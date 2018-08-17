@@ -1,5 +1,5 @@
 {
-  "name": "Med Time Record",
+  "name": "Med Record",
   "short_name": "Med Record",
   "theme_color": "#70acd6",
   "background_color": "#ffffff",
@@ -47,6 +47,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "splash_pages": null
+  ]
 }
