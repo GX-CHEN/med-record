@@ -1,6 +1,11 @@
-## Med Schedule Web App
+# Med Schedule Web App
 
-Responsive React Web App that record the medicine take schedule with English/Chinese support. Language switch in one click.
+## What is this?
+
+- Responsive React Web App that record the medicine taken status (for medicine experiment research).
+- Doctor can specify medicines, and view the med taken history by days.
+- Patient/volunteers need to report that they took the medicine everyday.
+- Has English/Chinese support. Language can be switched in one click.
 
 ## Demo Website
 
@@ -8,9 +13,12 @@ Responsive React Web App that record the medicine take schedule with English/Chi
 - Doctor Account: doctor/doctor
 - Patient Account: test/test
 
-## Application Screenshots
+## What can it do?
 
-### Login Page (in English and Chinese), language can switch using top-left icon
+### Login with different roles
+
+- There are two role permissions: doctor and patient. The login page is the same.
+- Two language can switch using top-left icon
 
 <p float="left">
 <img src="screenshots/login.jpg" alt="Login Page"  width="260"/>
@@ -18,7 +26,10 @@ Responsive React Web App that record the medicine take schedule with English/Chi
 </p>
 <div style="clear: both;"></div>
 
-### Patients have daily report page (report icon will be disabled after reporting until next day)
+### Patients View
+
+- After patient login, the daily report page will display. There's only one functional button (besides language switch button) that patient can click, which is the report button.
+- Patient should click report button when they take the medicine for a certain day. Report button will be disabled after reporting until next day.
 
 <p float="left">
 <img src="screenshots/patient_reporting.jpg" alt="Patient Reporting" width="260" />
@@ -27,7 +38,11 @@ Responsive React Web App that record the medicine take schedule with English/Chi
 </p>
 <div style="clear: both;"></div>
 
-### Doctor can manage medicines, and view med taken history
+### Doctor View
+
+- After doctor login, there are two options "manage medicines", and "view med taken history"
+- In "manage medicines" page, doctor can specify (add/delete) the medicines patient should take daily. These med info will display on patient view when patient take the meds
+- In "view med taken history" page, doctor can select a certain date, to see the med-taken status. A green check will appear after patient name only if already reported
 
 <p float="left">
 <img src="screenshots/med_history.jpg" alt="Med History" width="260" />
@@ -35,27 +50,43 @@ Responsive React Web App that record the medicine take schedule with English/Chi
 <div style="clear: both;"></div>
 </p>
 
-## Use the following commands to build and run the app
+## How to build?
 
-Front-end is using React, back-end is using NodeJS. The core technologies are both JavaScript, and both packaged using npm (node package manager)
+### Install app dependencies
 
-### Install global npm command
-
-```
+```bash
+# install global npm package which helps run the app
 npm install -g nodemon
 npm install -g serve
+
+# install dependencies for both server and client side
+cd server
+npm install
+
+cd ../client
+npm install
 ```
 
-### Build and run
+### Run in local dev mode
 
-There are two folders inside the project, one is node back-end (server), the other one is react frontend (client), go to each folder and run `npm install` to install dependencies. Then go to each folder to run `npm start` to start the application
+```bash
+# Assume you're in the root directory
 
-### RESTful URI
+# Go to server directory first, run server-side first
+cd server
+npm start
 
-CRUD (create, read, update, delete) action for the following type:
+# Then go to client directory, run client-side
+cd ../client
+npm install
+```
 
-1.  User account
-2.  Medicine
-3.  Experiment
-4.  Daily report for med taken (patient)
-5.  Read record (table view for doctor)
+### Run in production mode
+
+- For the client side, production ready bundle file can be achieved by running `npm run build`, then you can serve it use the web-server of your choice (Nginx or Apache)
+- For the server side, there are few options to run it, and keep it running. I would recommend a tool called PM2 which can help manage Node processes very easily
+
+## Tech Stacks
+
+- Server-side: NodeJS, Express, MongoDB
+- Client-side: React, Redux, Moment.js, Ant Design
