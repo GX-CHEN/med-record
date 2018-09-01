@@ -86,6 +86,12 @@ npm install
 - For the client side, production ready bundle file can be achieved by running `npm run build`, then you can serve it use the web-server of your choice (Nginx or Apache)
 - For the server side, there are few options to run it, and keep it running. I would recommend a tool called PM2 which can help manage Node processes very easily
 
+## Project idea origin & history
+
+My friend liuchengyu (https://github.com/HomoSapienLCY) is a PHD student in UCSD. He contacted me about the idea of creating an application that can record medicine taken status for clinical trial. We brainstormed together and refined MVP features.  
+Before contacting me, liuchengyu already have some base-code structure setup. Then after our discussion, I replaced the project structure to use the boilerplate structure from my previous project "itstime" and "giphy search", which is clearer and good for fast development.  
+Then since liychengyu were busy with his PHD work, I'm in charge of finish writing the application. I demo to liuchengyu whenever there're new features built, to get advice regard feature details. Now all the main features are finished, and I deployed on a test server for demo purpose. In the future, it's possible that we can further polish the app, and put it in actual usage.
+
 ## Tech Stacks
 
 - Server-side: NodeJS, Express, MongoDB
