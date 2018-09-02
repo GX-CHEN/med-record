@@ -1,4 +1,4 @@
-# Med Schedule
+# Med Record
 
 ## What is this?
 
