@@ -1,8 +1,8 @@
-# Med Schedule Web App
+# Med Schedule
 
 ## What is this?
 
-- Responsive React Web App that record the medicine taken status (for medicine experiment research).
+- Responsive Web App that record the medicine taken status (for medicine clinical trial research).
 - Doctor can specify medicines, and view the med taken history by days.
 - Patient/volunteers need to report that they took the medicine everyday.
 - Has English/Chinese support. Language can be switched in one click.
@@ -17,8 +17,8 @@
 
 ### Login with different roles
 
-- There are two role permissions: doctor and patient. The login page is the same.
-- Two language can switch using top-left icon
+- There are two user roles: doctor and patient. The login page is the same.
+- Two languages (English/Chinese) can switch using top-left icon
 
 <p float="left">
 <img src="screenshots/login.jpg" alt="Login Page"  width="260"/>
@@ -40,9 +40,9 @@
 
 ### Doctor View
 
-- After doctor login, there are two options "manage medicines", and "view med taken history"
-- In "manage medicines" page, doctor can specify (add/delete) the medicines patient should take daily. These med info will display on patient view when patient take the meds
-- In "view med taken history" page, doctor can select a certain date, to see the med-taken status. A green check will appear after patient name only if already reported
+- After doctor login, there are two options "manage medicines", and "view med taken history".
+- In "manage medicines" page, doctor can specify (add/delete) the medicines patient should take daily. These med info will display on patient view.
+- In "view med taken history" page, doctor can select a certain date, to see the med-taken status. A green check will appear on right of patient name only if already reported in that day.
 
 <p float="left">
 <img src="screenshots/med_history.jpg" alt="Med History" width="260" />
