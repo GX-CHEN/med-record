@@ -1,4 +1,4 @@
-const language = localStorage.getItem('language') || 'cn';
+const language = localStorage.getItem('language') || 'en';
 let text = {};
 if (language === 'en') {
   text = {
