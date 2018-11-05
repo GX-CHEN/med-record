@@ -3,7 +3,7 @@ import axios from 'axios';
 /** place all the service calls in this model folder.
  * If it's a small app (within 10 calls), it's OK to put them in a single file. If there are many calls, better to place in separate files
  */
-const baseURL = 'https://biteapie.com';
+const baseURL = 'https://themedrecord.com';
 
 /**
  *  CREDENTIAL (LOGIN/SIGN UP) services
