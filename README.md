@@ -9,7 +9,7 @@
 
 ## Demo Website
 
-- https://biteapie.com
+- https://themedrecord.com
 - Doctor Account: doctor/doctor
 - Patient Account: test/test
 
