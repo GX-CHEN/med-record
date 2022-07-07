@@ -15,7 +15,7 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.19",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-big-calendar": "^0.19.1",
